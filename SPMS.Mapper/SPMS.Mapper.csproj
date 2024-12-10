@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SPMS.Database\SPMS.Database.csproj" />
+    <ProjectReference Include="..\SPMS.Models\SPMS.Models.csproj" />
+  </ItemGroup>
+
+</Project>
