@@ -25,6 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<BasicAuthHandler>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
