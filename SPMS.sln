@@ -12,10 +12,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPMS.Shared", "SPMS.Shared\SPMS.Shared.csproj", "{737C18D9-E4BE-4DA4-B094-B4EA9E43D96A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{6A617A6B-E270-41A4-B99A-2B2B75B6C83D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPMS.Modules", "SPMS.Modules\SPMS.Modules.csproj", "{EA173DC7-5A84-44B2-8683-63BF77B61F2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMS.Models", "SPMS.Models\SPMS.Models.csproj", "{FD0F1855-6B68-4365-AE1A-63205C72FDFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPMS.Models", "SPMS.Models\SPMS.Models.csproj", "{FD0F1855-6B68-4365-AE1A-63205C72FDFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
