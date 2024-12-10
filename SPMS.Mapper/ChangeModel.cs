@@ -43,6 +43,4 @@ public static class ChangeModel
             EnrollmentDate = model.EnrollmentDate
         };
     }
-
-
 }

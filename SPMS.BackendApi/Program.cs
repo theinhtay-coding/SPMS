@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SPMS.BackendApi;
-using SPMS.Database.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

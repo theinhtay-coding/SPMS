@@ -1,7 +1,3 @@
-# SPMS
-
-Table Design
-
 # Table Design
 
 ### AcademicYear
