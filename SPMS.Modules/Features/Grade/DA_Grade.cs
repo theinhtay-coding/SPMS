@@ -1,4 +1,7 @@
-﻿using SPMS.Database.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SPMS.Database.Models;
+using SPMS.Mapper;
+using SPMS.Models;
 using SPMS.Models.Grade;
 using System;
 using System.Collections.Generic;
@@ -17,16 +20,58 @@ public class DA_Grade
         _db = db;
     }
 
-    public GradeListResponseModel GetGrades()
+    public async Task<Result<GradeListResponseModel>> GetGrades()
     {
-        GradeListResponseModel lstGrade = new GradeListResponseModel();
-        return lstGrade;
+        Result<GradeListResponseModel> model = null;
+
+        try
+        {
+            var lstGrade = await _db.Grades.AsNoTracking().ToListAsync();
+            if (!lstGrade.Any())
+            {
+                model = Result<GradeListResponseModel>.Success(new GradeListResponseModel
+                {
+                    Grades = new List<GradeModel>()
+                });
+                return model;
+            }
+
+            var grades = lstGrade.Select(grade => grade.Change()).ToList();
+            var lstResponseModel = new GradeListResponseModel()
+            {
+                Grades = grades
+            };
+            model = Result<GradeListResponseModel>.Success(lstResponseModel);
+        }
+        catch (Exception ex)
+        {
+            model = Result<GradeListResponseModel>.Error(ex);
+        }
+        return model;
     }
 
-    public GradeResponseModel GetGradeById(int id)
+    public async Task<Result<GradeResponseModel>> GetGradeById(int id)
     {
-        GradeResponseModel responseModel = new GradeResponseModel();
-        return responseModel;
+        Result<GradeResponseModel> model = null;
+        try
+        {
+            var grade = await _db.Grades.SingleOrDefaultAsync(x => x.GradeId == id);
+            if (grade is null)
+            {
+                model = Result<GradeResponseModel>.Error($"There is no grade record with id {id}");
+                goto result;
+            }
+
+            var respModel = grade!.ChangeToResponseModel();
+
+            model = Result<GradeResponseModel>.Success(respModel);
+        }
+        catch (Exception ex)
+        {
+            model = Result<GradeResponseModel>.Error(ex);
+        }
+    result:
+        return model;
     }
 
     public GradeResponseModel CreateGrade(GradeRequestModel requestModel)

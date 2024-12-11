@@ -1,7 +1,10 @@
-﻿namespace SPMS.Mapper;
+﻿using SPMS.Models.Grade;
+
+namespace SPMS.Mapper;
 
 public static class ChangeModel
 {
+    #region Students
     public static StudentModel Change(this Student student)
     {
         return new StudentModel
@@ -43,4 +46,27 @@ public static class ChangeModel
             EnrollmentDate = model.EnrollmentDate
         };
     }
+    #endregion
+
+    #region Grades
+    public static GradeModel Change(this Grade model)
+    {
+        return new GradeModel
+        {
+            GradeId = model.GradeId,
+            GradeName = model.GradeName,
+            PaymentAmount = model.PaymentAmount
+        };
+    }
+
+    public static GradeResponseModel ChangeToResponseModel(this Grade model)
+    {
+        return new GradeResponseModel
+        {
+            GradeId = model.GradeId,
+            GradeName = model.GradeName,
+            PaymentAmount = model.PaymentAmount
+        };
+    }
+    #endregion
 }

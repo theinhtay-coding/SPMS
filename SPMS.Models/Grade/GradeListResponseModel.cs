@@ -1,6 +1,9 @@
-﻿namespace SPMS.Models.Grade;
+﻿using SPMS.Models.Custom;
+
+namespace SPMS.Models.Grade;
 
 public class GradeListResponseModel
 {
-    List<GradeModel> DataList { get; set; }
+    public List<GradeModel> Grades { get; set; }
+    public PageSettingModel PageSetting { get; set; }
 }

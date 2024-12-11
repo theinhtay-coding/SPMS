@@ -1,4 +1,5 @@
-﻿using SPMS.Models.Grade;
+﻿using SPMS.Models;
+using SPMS.Models.Grade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +17,15 @@ public class BL_Grade
         _daGrade = daGrade;
     }
 
-    public GradeListResponseModel GetGrades()
+    public async Task<Result<GradeListResponseModel>> GetGrades()
     {
-        var respModel = _daGrade.GetGrades();
+        var respModel = await _daGrade.GetGrades();
         return respModel;
     }
 
-    public GradeResponseModel GetGradeById(int id)
+    public async Task<Result<GradeResponseModel>> GetGradeById(int id)
     {
-        if (id <= 0)
-        {
-            // do something
-        }
-        var respModel = _daGrade.GetGradeById(id);
+        var respModel = await _daGrade.GetGradeById(id);
         return respModel;
     }
 

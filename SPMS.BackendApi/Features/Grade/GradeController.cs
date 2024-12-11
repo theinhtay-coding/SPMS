@@ -17,17 +17,31 @@ public class GradeController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetGrades()
+    public async Task<IActionResult> GetGrades()
     {
-        var lstGrade = _blGrade.GetGrades();
-        return Ok(lstGrade);
+        try
+        {
+            var lstGrade = await _blGrade.GetGrades();
+            return Ok(lstGrade);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+        }
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetGradeById(int id)
+    public async Task<IActionResult> GetGradeById(int id)
     {
-        var respModel = _blGrade.GetGradeById(id);
-        return Ok(respModel);
+        try
+        {
+            var respModel = await _blGrade.GetGradeById(id);
+            return Ok(respModel);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+        }
     }
 
     [HttpPost]
