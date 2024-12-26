@@ -1,4 +1,5 @@
 ﻿using SPMS.Models.Grade;
+using System.Runtime.CompilerServices;
 
 namespace SPMS.Mapper;
 
@@ -62,6 +63,16 @@ public static class ChangeModel
     public static GradeResponseModel ChangeToResponseModel(this Grade model)
     {
         return new GradeResponseModel
+        {
+            GradeId = model.GradeId,
+            GradeName = model.GradeName,
+            PaymentAmount = model.PaymentAmount
+        };
+    }
+
+    public static Grade Change(this GradeRequestModel model)
+    {
+        return new Grade
         {
             GradeId = model.GradeId,
             GradeName = model.GradeName,

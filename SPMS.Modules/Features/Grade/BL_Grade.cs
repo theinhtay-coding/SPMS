@@ -29,9 +29,9 @@ public class BL_Grade
         return respModel;
     }
 
-    public GradeResponseModel CreateGrade(GradeRequestModel reqModel)
+    public async Task<Result<GradeResponseModel>> CreateGrade(GradeRequestModel reqModel)
     {
-        var respModel = _daGrade.CreateGrade(reqModel);
+        var respModel = await _daGrade.CreateGrade(reqModel);
         return respModel;
     }
 

@@ -74,10 +74,29 @@ public class DA_Grade
         return model;
     }
 
-    public GradeResponseModel CreateGrade(GradeRequestModel requestModel)
+    public async Task<Result<GradeResponseModel>> CreateGrade(GradeRequestModel requestModel)
     {
-        GradeResponseModel respModel = new GradeResponseModel();
-        return respModel;
+        Result<GradeResponseModel> model = null;
+
+        try
+        {
+            if (requestModel == null)
+                throw new ArgumentNullException(nameof(requestModel), "Request model cannot be null");
+
+            var grade = requestModel.Change();
+            await _db.Grades.AddAsync(grade);
+            var result = _db.SaveChangesAsync();
+            var respModel = grade.ChangeToResponseModel();
+
+            model = result.Result > 0
+                ? Result<GradeResponseModel>.Success(respModel)
+                : Result<GradeResponseModel>.Error("Grade create failed.");
+        }
+        catch (Exception ex)
+        {
+            model = Result<GradeResponseModel>.Error(ex);
+        }
+        return model;
     }
 
     public GradeResponseModel UpdateGrade(int id, GradeRequestModel requestModel)

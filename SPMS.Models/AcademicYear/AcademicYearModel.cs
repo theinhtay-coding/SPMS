@@ -8,4 +8,7 @@ namespace SPMS.Models.AcademicYear;
 
 public class AcademicYearModel
 {
+    public int AcademicYearId { get; set; }
+
+    public string Year { get; set; } = null!;
 }

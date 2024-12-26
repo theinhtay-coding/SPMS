@@ -45,10 +45,17 @@ public class GradeController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateGrade(GradeRequestModel reqModel)
+    public async Task<IActionResult> CreateGrade(GradeRequestModel reqModel)
     {
-        var respModel = _blGrade.CreateGrade(reqModel);
-        return Ok(respModel);
+        try
+        {
+            var respModel = await _blGrade.CreateGrade(reqModel);
+            return Ok(respModel);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+        }
     }
 
     [HttpPut("{id}")]
