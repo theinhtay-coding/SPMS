@@ -3,6 +3,7 @@ using SPMS.Database.Models;
 using SPMS.Mapper;
 using SPMS.Models;
 using SPMS.Models.Grade;
+using SPMS.Models.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,14 +100,61 @@ public class DA_Grade
         return model;
     }
 
-    public GradeResponseModel UpdateGrade(int id, GradeRequestModel requestModel)
+    public async Task<Result<GradeResponseModel>> UpdateGrade(int id, GradeRequestModel requestModel)
     {
-        GradeResponseModel respModel = new GradeResponseModel();
-        return respModel;
+        Result<GradeResponseModel> model = null;
+        try
+        {
+            if (requestModel == null)
+                throw new ArgumentNullException(nameof(requestModel), "Request model cannot be null");
+
+            var grade = await _db.Grades.AsNoTracking().FirstOrDefaultAsync(x => x.GradeId == id);
+            if (grade is null)
+            {
+                return Result<GradeResponseModel>.Error($"There is no grade record with id {id}");
+            }
+
+            grade.GradeName = requestModel.GradeName;
+            grade.PaymentAmount = requestModel.PaymentAmount;
+
+            _db.Grades.Update(grade);
+            var result = await _db.SaveChangesAsync();
+
+            var respModel = grade.ChangeToResponseModel();
+            model = result > 0
+                ? Result<GradeResponseModel>.Success(respModel)
+                : Result<GradeResponseModel>.Error("Grade update failed.");
+        }
+        catch (Exception ex)
+        {
+            model = Result<GradeResponseModel>.Error(ex.Message.ToString());
+        }
+        return model;
     }
 
-    public void DeleteGrade(int id)
+    public async Task<Result<object>> DeleteGrade(int id)
     {
+        Result<object> model = null;
 
+        try
+        {
+            var grade = await _db.Grades.AsNoTracking().FirstOrDefaultAsync(x => x.GradeId == id);
+            if (grade is null)
+            {
+                model = Result<object>.Error($"There is no grade record with id {id}");
+            }
+            _db.Grades.Remove(grade);
+            _db.Entry(grade).State = EntityState.Deleted;
+            var result = await _db.SaveChangesAsync();
+
+            model = result > 0
+                ? Result<object>.Success(null)
+                : Result<object>.Error("Grade delete failed.");
+        }
+        catch (Exception ex)
+        {
+            model = Result<object>.Error(ex);
+        }
+        return model;
     }
 }

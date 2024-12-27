@@ -35,14 +35,17 @@ public class BL_Grade
         return respModel;
     }
 
-    public GradeResponseModel UpdateGrade(int id, GradeRequestModel reqModel)
+    public async Task<Result<GradeResponseModel>> UpdateGrade(int id, GradeRequestModel reqModel)
     {
-        var respModel = _daGrade.UpdateGrade(id, reqModel);
+        if (id <= 0) throw new Exception("id is null");
+        var respModel = await _daGrade.UpdateGrade(id, reqModel);
         return respModel;
     }
 
-    public void DeleteGrade(int id)
+    public async Task<Result<object>> DeleteGrade(int id)
     {
-        _daGrade.DeleteGrade(id);
+        if (id <= 0) throw new Exception("Id less than 0");
+        var respModel = await _daGrade.DeleteGrade(id);
+        return respModel;
     }
 }

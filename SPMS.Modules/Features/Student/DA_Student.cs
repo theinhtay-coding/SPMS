@@ -154,7 +154,7 @@ public class DA_Student
             }
             if (reqModel.DateOfBirth is DateOnly dateOfBirth && dateOfBirth != default)
             {
-                student.EnrollmentDate = dateOfBirth;
+                student.DateOfBirth = dateOfBirth;
             }
 
             _db.Entry(student).State = EntityState.Modified;
@@ -183,7 +183,7 @@ public class DA_Student
             var result = await _db.SaveChangesAsync();
             model = result > 0
                 ? Result<object>.Success(null)
-                : Result<object>.Error("Delete failed.");
+                : Result<object>.Error("Student Delete failed.");
         }
         catch (Exception ex)
         {

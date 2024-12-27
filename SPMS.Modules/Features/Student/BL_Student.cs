@@ -41,6 +41,10 @@ public class BL_Student
 
     public async Task<Result<StudentResponseModel>> CreateStudent(StudentRequestModel requestModel)
     {
+        if(requestModel is null)
+        {
+            throw new Exception("Request model is null");
+        }
         var respModel = await _daStudent.CreateStudent(requestModel);
         return respModel;
     }
@@ -54,7 +58,7 @@ public class BL_Student
 
     public async Task<Result<object>> DeleteStudent(int id)
     {
-        if (id <= 0) throw new Exception("id is null");
+        if (id <= 0) throw new Exception("id less than 0");
         var respModel = await _daStudent.DeleteStudent(id);
         return respModel;
     }

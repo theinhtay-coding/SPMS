@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.Grade;
 using SPMS.Modules.Features.Grade;
@@ -59,16 +60,24 @@ public class GradeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateGrade(int id, GradeRequestModel reqModel)
+    public async Task<IActionResult> UpdateGradeAsync(int id, GradeRequestModel reqModel)
     {
-        var respModel = _blGrade.UpdateGrade(id, reqModel);
-        return Ok(respModel);
+        try
+        {
+            var respModel = await _blGrade.UpdateGrade(id, reqModel);
+            return Ok(respModel);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message.ToString());
+        }
     }
 
     [HttpDelete]
-    public IActionResult DeleteGrade(int id)
+    public async Task<IActionResult> DeleteGradeAsync(int id)
     {
-        _blGrade.DeleteGrade(id);
-        return Ok();
+        var response = await _blGrade.DeleteGrade(id);
+        if (response.IsError) return BadRequest(response);
+        return Ok(response);
     }
 }
