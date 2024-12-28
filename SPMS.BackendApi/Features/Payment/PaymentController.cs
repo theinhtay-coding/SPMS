@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.Payment;
-using SPMS.Modules.Features.Payment;
 
 namespace SPMS.BackendApi.Features.Payment
 {

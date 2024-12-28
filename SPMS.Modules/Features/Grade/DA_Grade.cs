@@ -3,12 +3,6 @@ using SPMS.Database.Models;
 using SPMS.Mapper;
 using SPMS.Models;
 using SPMS.Models.Grade;
-using SPMS.Models.Student;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SPMS.Modules.Features.Grade;
 

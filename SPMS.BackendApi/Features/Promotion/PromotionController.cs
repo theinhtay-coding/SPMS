@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.Promotion;
-using SPMS.Modules.Features.Promotion;
 
 namespace SPMS.BackendApi.Features.Promotion
 {

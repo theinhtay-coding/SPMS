@@ -1,10 +1,6 @@
 ﻿using SPMS.Database.Models;
 using SPMS.Models.Promotion;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SPMS.Models;
 
 namespace SPMS.Modules.Features.Promotion;
 
@@ -37,7 +33,10 @@ public class DA_Promotion
         return new PromotionResponseModel();
     }
 
-    public void DeletePromotion(int id)
+    public Result<object> DeletePromotion(int id)
     {
+        Result<object> model = new Result<object>();
+        model = Result<object>.Error("Delete failed");
+        return model;
     }
 }

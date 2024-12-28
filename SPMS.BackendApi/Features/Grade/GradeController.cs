@@ -1,8 +1,5 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.Grade;
-using SPMS.Modules.Features.Grade;
 
 namespace SPMS.BackendApi.Features.Grade;
 

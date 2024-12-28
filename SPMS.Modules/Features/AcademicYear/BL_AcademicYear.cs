@@ -1,10 +1,4 @@
-﻿using Azure;
-using SPMS.Models.AcademicYear;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SPMS.Models.AcademicYear;
 
 namespace SPMS.Modules.Features.AcademicYear;
 

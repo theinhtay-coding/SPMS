@@ -1,10 +1,5 @@
 ﻿using SPMS.Models;
 using SPMS.Models.Grade;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SPMS.Modules.Features.Grade;
 

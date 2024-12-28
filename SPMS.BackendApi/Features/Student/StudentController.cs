@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.Student;
-using SPMS.Modules.Features.Student;
 
 namespace SPMS.BackendApi.Features.Student
 {

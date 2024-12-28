@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SPMS.Database.Models;
+﻿namespace SPMS.Database.Models;
 
 public partial class AcademicYear
 {

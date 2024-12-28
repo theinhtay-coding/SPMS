@@ -1,10 +1,5 @@
 ﻿using SPMS.Database.Models;
 using SPMS.Models.AcademicYear;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SPMS.Modules.Features.AcademicYear;
 
@@ -19,10 +14,8 @@ public class DA_AcademicYear
 
     public AcademicYearListResponseModel GetAcademicYears()
     {
-        //return new AcademicYearListResponseModel();
         AcademicYearListResponseModel lst = new AcademicYearListResponseModel();
         var lstAcademicYear = _db.AcademicYears.ToList();
-        //lst.DataList = lstAcademicYear;
         return lst;
     }
 

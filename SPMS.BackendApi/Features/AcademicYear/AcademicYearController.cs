@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.AcademicYear;
-using SPMS.Modules.Features.AcademicYear;
 
 namespace SPMS.BackendApi.Features.AcademicYear
 {

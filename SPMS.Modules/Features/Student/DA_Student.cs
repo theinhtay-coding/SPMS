@@ -4,7 +4,6 @@ using SPMS.Models.Student;
 using SPMS.Mapper;
 using SPMS.Models;
 using SPMS.Models.Custom;
-using System.Net.Sockets;
 
 namespace SPMS.Modules.Features.Student;
 
