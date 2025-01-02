@@ -1,4 +1,5 @@
-﻿using SPMS.Models.AcademicYear;
+﻿using SPMS.Models;
+using SPMS.Models.AcademicYear;
 
 namespace SPMS.Modules.Features.AcademicYear;
 
@@ -11,9 +12,9 @@ public class BL_AcademicYear
         _daAcademicYear = daAcademicYear;
     }
 
-    public AcademicYearListResponseModel GetAcademicYears()
+    public async Task<Result<AcademicYearListResponseModel>> GetAcademicYears()
     {
-        var lstAcademicYear = _daAcademicYear.GetAcademicYears();
+        var lstAcademicYear = await _daAcademicYear.GetAcademicYears();
         return lstAcademicYear;
     }
 

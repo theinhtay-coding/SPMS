@@ -15,10 +15,17 @@ namespace SPMS.BackendApi.Features.AcademicYear
         }
 
         [HttpGet]
-        public IActionResult GetAcademicYears()
+        public async Task<IActionResult> GetAcademicYears()
         {
-            var lstAcademicYear = _blAcademicYear.GetAcademicYears();
-            return Ok(lstAcademicYear);
+            try
+            {
+                var lstAcademicYear = await _blAcademicYear.GetAcademicYears();
+                return Ok(lstAcademicYear);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message.ToString());
+            }
         }
 
         [HttpGet("{id}")]

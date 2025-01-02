@@ -1,5 +1,9 @@
-﻿using SPMS.Database.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SPMS.Database.Models;
+using SPMS.Mapper;
+using SPMS.Models;
 using SPMS.Models.AcademicYear;
+using SPMS.Models.Student;
 
 namespace SPMS.Modules.Features.AcademicYear;
 
@@ -12,11 +16,35 @@ public class DA_AcademicYear
         _db = db;
     }
 
-    public AcademicYearListResponseModel GetAcademicYears()
+    public async Task<Result<AcademicYearListResponseModel>> GetAcademicYears()
     {
-        AcademicYearListResponseModel lst = new AcademicYearListResponseModel();
-        var lstAcademicYear = _db.AcademicYears.ToList();
-        return lst;
+        Result<AcademicYearListResponseModel> model = new Result<AcademicYearListResponseModel>();
+        try
+        {
+            var lstAcademicYear = await _db.AcademicYears.AsNoTracking().ToListAsync();
+            if (!lstAcademicYear.Any())
+            {
+                model = Result<AcademicYearListResponseModel>.Success(new AcademicYearListResponseModel()
+                {
+                    AcademicYears = new List<AcademicYearResponseModel>()
+                });
+            }
+
+            var academicYears = lstAcademicYear.Select(academicYear => academicYear.Change()).ToList();
+
+            var lstResponseModel = new AcademicYearListResponseModel()
+            {
+                AcademicYears = academicYears
+            };
+
+            model = Result<AcademicYearListResponseModel>.Success(lstResponseModel);
+        }
+        catch (Exception ex)
+        {
+            model = Result<AcademicYearListResponseModel>.Error(ex);
+        }
+
+        return model;
     }
 
     public AcademicYearResponseModel GetAcademicYearById(int id)
@@ -36,6 +64,5 @@ public class DA_AcademicYear
 
     public void DeleteAcademicYear(int id)
     {
-
     }
 }

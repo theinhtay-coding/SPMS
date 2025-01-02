@@ -1,4 +1,5 @@
-﻿using SPMS.Models.Grade;
+﻿using SPMS.Models.AcademicYear;
+using SPMS.Models.Grade;
 
 namespace SPMS.Mapper;
 
@@ -76,6 +77,18 @@ public static class ChangeModel
             GradeId = model.GradeId,
             GradeName = model.GradeName,
             PaymentAmount = model.PaymentAmount
+        };
+    }
+    #endregion
+
+    #region AcademicYear
+
+    public static AcademicYearResponseModel Change(this AcademicYear model)
+    {
+        return new AcademicYearResponseModel()
+        {
+            AcademicYearId = model.AcademicYearId,
+            Year = model.Year
         };
     }
     #endregion
