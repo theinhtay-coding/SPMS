@@ -1,5 +1,4 @@
-﻿using SPMS.Models;
-using SPMS.Models.Student;
+﻿using SPMS.Models.Student;
 
 namespace SPMS.Modules.Features.Student;
 

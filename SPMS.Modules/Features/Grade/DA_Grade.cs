@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SPMS.Database.Models;
-using SPMS.Mapper;
-using SPMS.Models;
-using SPMS.Models.Grade;
+﻿using SPMS.Models.Grade;
 
 namespace SPMS.Modules.Features.Grade;
 

@@ -1,7 +1,4 @@
-﻿using SPMS.Models.AcademicYear;
-using SPMS.Models.Grade;
-
-namespace SPMS.Mapper;
+﻿namespace SPMS.Mapper;
 
 public static class ChangeModel
 {

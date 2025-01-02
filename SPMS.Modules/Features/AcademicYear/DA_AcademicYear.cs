@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SPMS.Database.Models;
-using SPMS.Mapper;
-using SPMS.Models;
-using SPMS.Models.AcademicYear;
-using SPMS.Models.Student;
+﻿using SPMS.Models.AcademicYear;
 
 namespace SPMS.Modules.Features.AcademicYear;
 
