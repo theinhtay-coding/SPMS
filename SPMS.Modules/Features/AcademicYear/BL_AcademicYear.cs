@@ -1,5 +1,6 @@
 ﻿using SPMS.Models;
 using SPMS.Models.AcademicYear;
+using SPMS.Modules.Features.Student;
 
 namespace SPMS.Modules.Features.AcademicYear;
 
@@ -18,26 +19,28 @@ public class BL_AcademicYear
         return lstAcademicYear;
     }
 
-    public AcademicYearResponseModel GetAcademicYearById(int id)
+    public async Task<Result<AcademicYearResponseModel>> GetAcademicYearById(int id)
     {
-        var respModel = _daAcademicYear.GetAcademicYearById(id);
+        Result<AcademicYearResponseModel> respModel = await _daAcademicYear.GetAcademicYearById(id);
         return respModel;
     }
 
-    public AcademicYearResponseModel CreateAcademicYear(AcademicYearRequestModel reqModel)
+    public async Task<Result<AcademicYearResponseModel>> CreateAcademicYear(AcademicYearRequestModel reqModel)
     {
-        var respModel = _daAcademicYear.CreateAcademicYear(reqModel);
+        var respModel = await _daAcademicYear.CreateAcademicYear(reqModel);
         return respModel;
     }
 
-    public AcademicYearResponseModel UpdateAcademicYear(int id, AcademicYearRequestModel reqModel)
+    public async Task<Result<AcademicYearResponseModel>> UpdateAcademicYear(int id, AcademicYearRequestModel reqModel)
     {
-        var respModel = _daAcademicYear.UpdateAcademicYear(id, reqModel);
+        var respModel = await _daAcademicYear.UpdateAcademicYear(id, reqModel);
         return respModel;
     }
 
-    public void DeleteAcademicYear(int id)
+    public async Task<Result<object>> DeleteAcademicYear(int id)
     {
-        _daAcademicYear.DeleteAcademicYear(id);
+        if (id <= 0) throw new Exception("id less than 0");
+        var respModel = await _daAcademicYear.DeleteAcademicYear(id);
+        return respModel;
     }
 }

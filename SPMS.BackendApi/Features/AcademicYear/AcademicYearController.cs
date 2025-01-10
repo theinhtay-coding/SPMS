@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SPMS.Models.AcademicYear;
+using SPMS.Modules.Features.Student;
 
 namespace SPMS.BackendApi.Features.AcademicYear
 {
@@ -29,31 +30,53 @@ namespace SPMS.BackendApi.Features.AcademicYear
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAcademicYearById(int id)
+        public async Task<IActionResult> GetAcademicYearById(int id)
         {
-            var respModel = _blAcademicYear.GetAcademicYearById(id);
-            return Ok(respModel);
+            try
+            {
+                var respModel = await _blAcademicYear.GetAcademicYearById(id);
+                return Ok(respModel);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
         }
 
         [HttpPost]
-        public IActionResult CreateAcademicYear(AcademicYearRequestModel reqModel)
+        public async Task<IActionResult> CreateAcademicYear(AcademicYearRequestModel reqModel)
         {
-            var respModel = _blAcademicYear.CreateAcademicYear(reqModel);
+            var respModel = await _blAcademicYear.CreateAcademicYear(reqModel);
             return Ok(respModel);
         }
 
-        [HttpPut]
-        public IActionResult UpdateAcademicYear(int id, AcademicYearRequestModel reqModel)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateAcademicYear(int id, AcademicYearRequestModel reqModel)
         {
-            var respModel = _blAcademicYear.UpdateAcademicYear(id, reqModel);
-            return Ok(respModel);
+            try
+            {
+                var respModel = await _blAcademicYear.UpdateAcademicYear(id, reqModel);
+                return Ok(respModel);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
         }
 
         [HttpDelete]
-        public IActionResult DeleteAcademicYear(int id)
+        public async Task<IActionResult> DeleteAcademicYear(int id)
         {
-            _blAcademicYear.DeleteAcademicYear(id);
-            return Ok();
+            try
+            {
+                var response = await _blAcademicYear.DeleteAcademicYear(id);
+                if (response.IsError) return BadRequest(response);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
         }
     }
 }

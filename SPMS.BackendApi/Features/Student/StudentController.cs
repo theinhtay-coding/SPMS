@@ -85,7 +85,7 @@ namespace SPMS.BackendApi.Features.Student
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClientAsync(int id)
+        public async Task<IActionResult> DeleteClient(int id)
         {
             try
             {

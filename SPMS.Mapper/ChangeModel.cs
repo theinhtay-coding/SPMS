@@ -88,5 +88,14 @@ public static class ChangeModel
             Year = model.Year
         };
     }
+
+    public static AcademicYear Change(this AcademicYearRequestModel model)
+    {
+        return new AcademicYear()
+        {
+            AcademicYearId = model.AcademicYearId,
+            Year = model.Year
+        };
+    }
     #endregion
 }
